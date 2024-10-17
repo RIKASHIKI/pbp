@@ -33,6 +33,17 @@
                     <a href="{{ route('pembeli.ubah',$p->id_pembeli)}}">edit</a>
                     <button type="submit">hapus</button>
                 </form>
+                @if(session('status'))
+                    <script>
+                        Swal.fire({
+                            position: "top-end",
+		                    icon: "{{session('status')['icon']}}",
+		                    text: "{{session('status')['pesan']}}",
+		                    showConfirmButton: false,
+		                    timer: 2000
+                        });
+                    </script>
+                @endif
             </td>
         </tr>
             

@@ -1,6 +1,6 @@
 @extends('layout.menu')
 @section('konten')
-<form method="post" action="{{route('barang.update',$barang->id_barang)}}">
+<form method="post" action="{{route('barang.update',$barang->id)}}">
     @csrf
     @method('put')
     NAMA :

@@ -32,18 +32,20 @@ class Cbarang extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:20',
+            'id_barang' => 'required|string|max:20',
+            'nama' => 'required|string|max:50',
             'varian' => 'required|string|max:20',
-            'harga_beli' => 'required|string|max:11',
-            'harga_jual' => 'required|string|max:11',
+            'harga_beli' => 'required|string|max:20',
+            'harga_jual' => 'required|string|max:20',
         ]);
         Mbarang::create([
+            'id_barang' => $request->id_barang,
             'nama' => $request->nama,
             'varian' => $request->varian,
             'harga_beli' => $request->harga_beli,
             'harga_jual' => $request->harga_jual,
         ]);
-        return redirect()->route('barang.index')->with('success','data barang berhasil disimpan');
+        return redirect()->route('barang.index')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'success']);
     }
 
     /**
@@ -76,13 +78,8 @@ class Cbarang extends Controller
             'harga_jual' => 'required|string|max:11',
         ]);
         $barang = Mbarang::findOrFail($id);
-        $barang->update([
-            'nama' => $request->name,
-            'variant' => $request->varian,
-            'harga_beli' => $request->harga_beli,
-            'harga_jual' => $request->harga_jual,
-        ]);
-        return redirect()->route('barang.index')->with('success','data barang berhasil di update');
+        $barang->update($request->all());
+        return redirect()->route('barang.index')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'success']);
     }
 
     /**
@@ -92,6 +89,6 @@ class Cbarang extends Controller
     {
         $barang = Mbarang::findOrFail($id);
         $barang->delete();
-        return redirect()->route('barang.index')->with('success','daat berhasil di hapus');
+        return redirect()->route('barang.index')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'success']);
     }
 }

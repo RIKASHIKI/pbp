@@ -8,10 +8,12 @@ use App\Models\Mpembeli;
 class Cpembeli extends Controller
 {
     public function tampil(){
+        $judul = 'pembeli';
         $pembeli = Mpembeli::get();
         return view('pembeli.tampil', compact('pembeli'));
     }
     public function tambah(){
+        $judul = 'tambah data pembeli';
         return view('pembeli.tambah');
     }
     public function simpan(Request $request){
@@ -29,8 +31,10 @@ class Cpembeli extends Controller
         $pembeli->save();
         return redirect()->route('pembeli.tampil')->with('berhasil','data berhasil disimpan');
     }
-    public function ubah(){
-        //
+    public function ubah(string $id){
+        $judul = 'Barang';
+        $pembeli = Mpembeli::findOrFail($id);
+        return view('pembeli.ubah', compact('pembeli', 'judul'));
     }
     public function hapus($id){
         //

@@ -12,7 +12,10 @@ class Cdashboard extends Controller
      */
     public function index()
     {
-        //
+        $dash = new Mdashboard();
+        $jumlah_barang = $dash->jumlah_barang();
+        $jumlah_pembeli = $dash->jumlah_pembeli();
+        return view('index',compact('jumlah_pembeli','jumlah_barang'));
     }
 
     /**

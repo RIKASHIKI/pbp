@@ -13,8 +13,10 @@
     <link href="{{ asset('asset/lib/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
     <link href="{{ asset('asset/lib/jquery-toggles/toggles-full.css') }}" rel="stylesheet">
     <link href="{{ asset('asset/lib/rickshaw/rickshaw.min.css') }}" rel="stylesheet">
-
+    
+    <!-- sweetalert dan template amanda -->
     <link rel="stylesheet" href="{{ asset('asset/css/amanda.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -31,12 +33,12 @@
             <div class="dropdown dropdown-profile">
                 <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
                     <img src="img/img3.jpg" class="wd-32 rounded-circle" alt="">
-                    <span class="logged-name"><span class="hidden-xs-down">Jane Doe</span> <i class="fa fa-angle-down mg-l-3"></i></span>
+                    <span class="logged-name"><span class="hidden-xs-down">{{ Auth::user()->username }}</span> <i class="fa fa-angle-down mg-l-3"></i></span>
                 </a>
                 <div class="dropdown-menu wd-200">
                     <ul class="list-unstyled user-profile-nav">
                         <li><a href=""><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
-                        <li><a href=""><i class="icon ion-power"></i> Sign Out</a></li>
+                        <li><a href="{{ route('logout') }}"><i class="icon ion-power"></i> Sign Out</a></li>
                     </ul>
                 </div><!-- dropdown-menu -->
             </div><!-- dropdown -->
@@ -72,6 +74,24 @@
                         <a href="{{route('barang.index')}}" class="nav-link {{ Request::is('barang') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
                             <span>Barang</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link {{ request::is('suplier') ? 'active' : '' }}">
+                            <i class="icon ion-ios-home-outline"></i>
+                            <span>Suplier (belum)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('pembeli.tampil') }}" class="nav-link {{ request::is('pembeli') ? 'active' : '' }}">
+                            <i class="icon ion-ios-home-outline"></i>
+                            <span>Pembeli</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link {{ request::is('pesanan') ? 'active' : '' }}">
+                            <i class="icon ion-ios-home-outline"></i>
+                            <span>pesanan (belum)</span>
                         </a>
                     </li>
 

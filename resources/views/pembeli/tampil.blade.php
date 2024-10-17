@@ -1,8 +1,8 @@
 @extends('layout.menu')
 @section('konten')
-<a href="{{route('pembeli.tambah')}}">tambah data</a>
+<a href="{{route('pembeli.tambah')}}" class="btn btn-primary btn-sm mb-1">tambah data</a>
 <br>
-<table>
+<table class="table-bordered table-hover table-striped table">
     <thead>
         <tr>
             <th>no</th>
@@ -33,6 +33,17 @@
                     <a href="{{ route('pembeli.ubah',$p->id_pembeli)}}">edit</a>
                     <button type="submit">hapus</button>
                 </form>
+                @if(session('status'))
+                    <script>
+                        Swal.fire({
+                            position: "top-end",
+		                    icon: "{{session('status')['icon']}}",
+		                    text: "{{session('status')['pesan']}}",
+		                    showConfirmButton: false,
+		                    timer: 2000
+                        });
+                    </script>
+                @endif
             </td>
         </tr>
             

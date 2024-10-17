@@ -2,10 +2,11 @@
 @section('konten')
 <form method="POST" action="{{route('barang.store')}}">
     @csrf
-
-    NAMA : <input type="text" name="nama" required>
+    ID BARANG : <input type="text" name="id_barang" required>
     <br />
-    VARIAN : <input type="text" name="varian" required>
+    NAMA BARANG : <input type="text" name="nama" required>
+    <br />
+    VARIAN BARANG : <input type="text" name="varian" required>
     @error('nama') {{ $message }} @enderror
     <br />
     HARGA BELI : <input type="number" name="harga_beli" required>
