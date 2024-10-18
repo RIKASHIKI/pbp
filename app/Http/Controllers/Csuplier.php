@@ -12,8 +12,9 @@ class Csuplier extends Controller
      */
     public function index()
     {
+        $judul = 'Suplier';
         $suplier = Msuplier::get();
-        return view('suplier.index', compact('suplier'));
+        return view('suplier.index', compact('suplier','judul'));
 
     }
 
@@ -22,7 +23,8 @@ class Csuplier extends Controller
      */
     public function create()
     {
-        return view('suplier.tambah');
+        $judul = 'tambah data suplier';
+        return view('suplier.tambah',compact('judul'));
     }
 
     /**
@@ -58,8 +60,9 @@ class Csuplier extends Controller
      */
     public function edit(string $id)
     {
+        $judul = 'edit data suplier';
         $suplier = Msuplier::findOrFail($id);
-        return view('suplier.edit', compact('suplier'));
+        return view('suplier.edit', compact('suplier','judul'));
     }
 
     /**

@@ -2,7 +2,7 @@
 @section('konten')
 
 <a href="{{route('barang.create')}}" class="btn btn-primary btn-sm mb-1">tambah data</a>
-<table class="table-bordered table-hover table-striped table">
+<table id="exa" class="table-bordered table-hover table-striped table">
     @csrf
     <thead>
         <tr>
@@ -43,7 +43,6 @@
                         });
                     </script>
                 @endif
-
             </td>
         </tr>
         @endforeach

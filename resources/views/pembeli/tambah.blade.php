@@ -9,16 +9,15 @@
     NAMA : <input type="text" name="nama" required>
     @error('nama') {{ $message }} @enderror
     <br />
+    ALAMAT : <textarea name="alamat" rows="3" required></textarea>
+    @error('alamat') {{ $message }} @enderror
+    <br>
     JENIS KELAMIN : <select name="jns_kelamin" required>
         <option value="">~ pilih ~</option>
         <option value="pria">pria</option>
         <option value="wanita">wanita</option>
         @error('jns_kelamin') {{ $message }} @enderror
-
-    <br />
-    ALAMAT : <textarea name="alamat" rows="5" required></textarea>
-    @error('alamat') {{ $message }} @enderror
-    <br />
+    <br/>
     KODE POS : <input type="number" name="kode_pos" required>
     @error('kode_pos') {{ $message }} @enderror
     <br />
@@ -27,7 +26,9 @@
     <br />
     TANGGAL LAHIR : <input type="date" name="tgl_lahir" required>
     @error('tgl_lahir') {{ $message }} @enderror
+    <br>
     <button type="submit">Simpan</button>
     <button type="reset">Reset</button>
+
 </form>
 @endsection

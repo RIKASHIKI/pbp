@@ -10,11 +10,11 @@ class Cpembeli extends Controller
     public function tampil(){
         $judul = 'pembeli';
         $pembeli = Mpembeli::get();
-        return view('pembeli.tampil', compact('pembeli'));
+        return view('pembeli.tampil', compact('pembeli','judul'));
     }
     public function tambah(){
         $judul = 'tambah data pembeli';
-        return view('pembeli.tambah');
+        return view('pembeli.tambah',compact('judul'));
     }
     public function simpan(Request $request){
         $request->validate([

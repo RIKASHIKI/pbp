@@ -13,7 +13,8 @@
     <link href="{{ asset('asset/lib/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
     <link href="{{ asset('asset/lib/jquery-toggles/toggles-full.css') }}" rel="stylesheet">
     <link href="{{ asset('asset/lib/rickshaw/rickshaw.min.css') }}" rel="stylesheet">
-    
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
     <!-- sweetalert dan template amanda -->
     <link rel="stylesheet" href="{{ asset('asset/css/amanda.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -51,13 +52,13 @@
                 <a href="#" class="nav-link active"><i class="icon ion-ios-home-outline tx-24"></i></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"></a>
+                <a href="#" class="nav-link"><i class="icon ion-ios-home-outline tx-24"></i></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"></a>
+                <a href="#" class="nav-link"><i class="icon ion-ios-home-outline tx-24"></i></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"></a>
+                <a href="#" class="nav-link"><i class="icon ion-ios-home-outline tx-24"></i></a>
             </li>
         </ul>
 
@@ -78,7 +79,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="" class="nav-link {{ request::is('suplier') ? 'active' : '' }}">
-                            <i class="icon ion-ios-home-outline"></i>
+                            <i class="icon ion-ios-truck-outline"></i>
                             <span>Suplier (belum)</span>
                         </a>
                     </li>
@@ -94,20 +95,24 @@
                             <span>pesanan (belum)</span>
                         </a>
                     </li>
-
-
+                    <li class="nav-item">
+                        <a href="{{ route('admin.index') }}" class="nav-link {{ request::is('user') ? 'active' : '' }}">
+                            <i class="icon ion-ios-home-outline"></i>
+                            <span>user</span>
+                        </a>
+                    </li>
                     <!-- nav-item -->
                     <li class="nav-item">
                         <a href="" class="nav-link with-sub">
                             <i class="icon ion-ios-gear-outline"></i>
-                            <span>Forms</span>
+                            <span>list</span>
                         </a>
                         <ul class="nav-sub">
-                            <li class="nav-item"><a href="form-elements.html" class="nav-link">Form Elements</a></li>
-                            <li class="nav-item"><a href="form-layouts.html" class="nav-link">Form Layouts</a></li>
-                            <li class="nav-item"><a href="form-validation.html" class="nav-link">Form Validation</a></li>
-                            <li class="nav-item"><a href="form-wizards.html" class="nav-link">Form Wizards</a></li>
-                            <li class="nav-item"><a href="form-editor-text.html" class="nav-link">Text Editor</a></li>
+                            <li class="nav-item"><a href="form-elements.html" class="nav-link">list 1</a></li>
+                            <li class="nav-item"><a href="form-layouts.html" class="nav-link">list 2</a></li>
+                            <li class="nav-item"><a href="form-validation.html" class="nav-link">list 3</a></li>
+                            <li class="nav-item"><a href="form-wizards.html" class="nav-link">list 4</a></li>
+                            <li class="nav-item"><a href="form-editor-text.html" class="nav-link">list 5</a></li>
                         </ul>
                     </li><!-- nav-item -->
 
@@ -148,6 +153,13 @@
     <script src="{{ asset('asset/js/amanda.js') }}"></script>
     <script src="{{ asset('asset/js/ResizeSensor.js') }}"></script>
     <script src="{{ asset('asset/js/dashboard.js') }}"></script>
+
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#exa').DataTable();
+        });
+    </script>
 </body>
 
 </html>
