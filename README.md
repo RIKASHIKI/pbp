@@ -1,5 +1,5 @@
 
-```markdown
+
 # Sistem Manajemen Pengguna
 
 Sistem Manajemen Pengguna ini adalah aplikasi berbasis web yang dibangun dengan Laravel, dirancang untuk mengelola data pengguna dan memberikan fungsionalitas pendaftaran serta pengeditan informasi pengguna. Aplikasi ini cocok digunakan untuk kebutuhan administrasi yang memerlukan pengelolaan data pengguna dengan efisien.
@@ -84,15 +84,4 @@ Jika Anda memiliki pertanyaan lebih lanjut, silakan hubungi saya di:
 - **Email**: admin@gmail.com
 ```
 
-### Penjelasan:
-- **Judul dan Deskripsi**: Menjelaskan tujuan dan fungsionalitas proyek.
-- **Fitur**: Menyebutkan fitur utama dari aplikasi.
-- **Teknologi**: Daftar teknologi yang digunakan dalam proyek.
-- **Instalasi**: Langkah-langkah untuk menginstal dan menjalankan proyek.
-- **Struktur Kode**: Penjelasan mengenai struktur direktori dan file penting.
-- **Cara Menggunakan**: Informasi tentang bagaimana cara menggunakan aplikasi.
-- **Kontribusi**: Mengajak orang lain untuk berkontribusi pada proyek.
-- **Lisensi**: Informasi lisensi proyek.
-- **Kontak**: Memberikan informasi kontak untuk pertanyaan lebih lanjut.
 
-Kamu bisa menyesuaikan konten dan menambahkan detail yang mungkin penting sesuai kebutuhan proyekmu. Jika ada bagian tertentu yang ingin kamu tambahkan atau ubah, beri tahu saja!
