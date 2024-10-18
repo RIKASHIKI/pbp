@@ -1,66 +1,98 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+```markdown
+# Sistem Manajemen Pengguna
 
-## About Laravel
+Sistem Manajemen Pengguna ini adalah aplikasi berbasis web yang dibangun dengan Laravel, dirancang untuk mengelola data pengguna dan memberikan fungsionalitas pendaftaran serta pengeditan informasi pengguna. Aplikasi ini cocok digunakan untuk kebutuhan administrasi yang memerlukan pengelolaan data pengguna dengan efisien.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Fitur
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Pendaftaran Pengguna**: Pengguna baru dapat mendaftar dengan memasukkan informasi seperti nama, username, email, dan password.
+- **Pengelolaan Pengguna**: Admin dapat melihat daftar semua pengguna, serta mengedit informasi pengguna yang ada.
+- **Validasi Data**: Seluruh inputan dari pengguna divalidasi untuk memastikan data yang dimasukkan benar dan sesuai format yang diinginkan.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Teknologi yang Digunakan
 
-## Learning Laravel
+- **Laravel**: Framework PHP untuk pengembangan aplikasi web.
+- **MySQL**: Database untuk penyimpanan data pengguna.
+- **HTML/CSS**: Untuk tampilan antarmuka pengguna.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Instalasi
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. **Clone Repository**
+   ```bash
+   git clone <URL_REPOSITORY>
+   cd <NAMA_FOLDER>
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Instalasi Dependensi**
+   ```bash
+   composer install
+   ```
 
-## Laravel Sponsors
+3. **Konfigurasi Environment**
+   - Salin file `.env.example` menjadi `.env`
+   ```bash
+   cp .env.example .env
+   ```
+   - Sesuaikan pengaturan database pada file `.env`.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+4. **Generate Kunci Aplikasi**
+   ```bash
+   php artisan key:generate
+   ```
 
-### Premium Partners
+5. **Migrasi Database**
+   ```bash
+   php artisan migrate
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+6. **Jalankan Server**
+   ```bash
+   php artisan serve
+   ```
 
-## Contributing
+7. Akses aplikasi melalui browser di [http://localhost:8000](http://localhost:8000).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Struktur Kode
 
-## Code of Conduct
+- **app/Http/Controllers**
+  - `Cuser.php`: Mengelola pendaftaran dan pengeditan pengguna.
+  - `Cadmin.php`: Mengelola tampilan dan pengeditan data admin.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **resources/views**
+  - `auth/register.blade.php`: Formulir pendaftaran pengguna.
+  - `admin/index.blade.php`: Halaman untuk menampilkan daftar pengguna.
+  - `admin/edit.blade.php`: Formulir untuk mengedit informasi pengguna.
 
-## Security Vulnerabilities
+## Cara Menggunakan
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Untuk mendaftar, akses halaman pendaftaran di [http://localhost:8000/register](http://localhost:8000/register).
+2. Setelah mendaftar, admin dapat mengelola pengguna melalui halaman admin.
+3. Admin dapat mengedit informasi pengguna dengan mengklik tombol edit pada daftar pengguna.
 
-## License
+## Kontribusi
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Jika Anda ingin berkontribusi pada proyek ini, silakan buat branch baru dan kirim pull request. Kami sangat menghargai masukan dan kontribusi Anda.
+
+## Lisensi
+
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+
+## Kontak
+
+Jika Anda memiliki pertanyaan lebih lanjut, silakan hubungi saya di:
+- **Email**: admin@gmail.com
+```
+
+### Penjelasan:
+- **Judul dan Deskripsi**: Menjelaskan tujuan dan fungsionalitas proyek.
+- **Fitur**: Menyebutkan fitur utama dari aplikasi.
+- **Teknologi**: Daftar teknologi yang digunakan dalam proyek.
+- **Instalasi**: Langkah-langkah untuk menginstal dan menjalankan proyek.
+- **Struktur Kode**: Penjelasan mengenai struktur direktori dan file penting.
+- **Cara Menggunakan**: Informasi tentang bagaimana cara menggunakan aplikasi.
+- **Kontribusi**: Mengajak orang lain untuk berkontribusi pada proyek.
+- **Lisensi**: Informasi lisensi proyek.
+- **Kontak**: Memberikan informasi kontak untuk pertanyaan lebih lanjut.
+
+Kamu bisa menyesuaikan konten dan menambahkan detail yang mungkin penting sesuai kebutuhan proyekmu. Jika ada bagian tertentu yang ingin kamu tambahkan atau ubah, beri tahu saja!
