@@ -1,6 +1,7 @@
 <form method="POST" action="{{route('suplier.store')}}">
     @csrf
-
+    ID suplier <input type="text" name="id_suplier" required>
+    <br>
     NAMA : <input type="text" name="nama" required>
     <br />
     ALAMAT : <input type="text" name="alamat" required>

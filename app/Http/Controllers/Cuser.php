@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 use function Laravel\Prompts\password;
-
+//register
 class Cuser extends Controller
 {
     public function index(){
@@ -38,4 +38,6 @@ class Cuser extends Controller
         ]);
         return redirect()->route('login')->with('status', ['pesan' => 'pendaftaran berhasil! silahkan login', 'icon' => 'success']);
     }
+
+
 }

@@ -7,7 +7,9 @@ use App\Http\Controllers\Clogin;
 use App\Http\Controllers\Cbarang;
 use App\Http\Controllers\Csuplier;
 use App\Http\Controllers\Cpembeli;
+use App\Http\Controllers\Cpesanan;
 use App\Http\Controllers\Cdashboard;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,7 +37,11 @@ route::middleware(['auth'])->group(function (){
     })->name('home');
     route::get('/',[Cdashboard::class,'index'])->name('home');
 
-    
+    Route::resource('barang', Cbarang::class);
+    Route::resource('suplier',Csuplier::class);
+
+    route::get('/pesanan',[Cpesanan::class,'index'])->name('pesanan.index');
+        
     //route manual pembeli
     Route::get('/pembeli', [Cpembeli::class, 'tampil'])->name('pembeli.tampil');
     Route::get('/pembeli/tambah', [Cpembeli::class, 'tambah'])->name('pembeli.tambah');
@@ -45,12 +51,13 @@ route::middleware(['auth'])->group(function (){
     Route::delete('/pembeli/{id_pembeli}/hapus', [Cpembeli::class], 'hapus')->name('pembeli.hapus');
     //akses tampil admin
     route::middleware(['cek_level:admin'])->group(function (){
-        Route::resource('barang', Cbarang::class);
-        Route::resource('suplier',Csuplier::class);
-        
+
         route::get('/admin',[Cadmin::class,'index'])->name('admin.index');
+        route::post('/admin',[Cadmin::class,'adminregister_proses'])->name('adminregister_proses');
+        route::get('/admin/tambah',[Cadmin::class,'tambah'])->name('admin.tambah');
         route::get('/admin/user/{id}/edit',[Cadmin::class,'edit'])->name('admin.edit');
         route::put('/admin/user/{id}/update',[Cadmin::class,'update'])->name('admin.update');
+        route::delete('/admin/user/{id}/delete',[Cadmin::class,'delete'])->name('admin.delete');
     });
 
 

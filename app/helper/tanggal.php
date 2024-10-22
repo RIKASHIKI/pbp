@@ -18,7 +18,7 @@ function dateid1($tanggal){
         1 => 'jan','feb','mar','apr','mei','jun','jul','agt','sep','nov','des'
     );
     $pecahan = explode('-',$tanggal);
-    return $pecahan[2] . ' ' . $pecahan[(int)$pecahan[1]] . ' ' . $pecahan[0];
+    return $pecahan[2] . ' ' . $bulan[(int)$pecahan[1]] . ' ' . $pecahan[0];
 }
 
 function dateid2($tanggal){

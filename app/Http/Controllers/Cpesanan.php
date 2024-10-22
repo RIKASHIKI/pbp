@@ -2,64 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mpesanan;
+
+use App\Models\Mbarang;
+use App\Models\Mpembeli;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class Cpesanan extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Mpesanan $mpesanan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Mpesanan $mpesanan)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Mpesanan $mpesanan)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Mpesanan $mpesanan)
-    {
-        //
+    public function index(){
+        $judul = 'pesanan';
+        $pesanan = DB::table('pesanan')
+        ->leftJoin('barang','barang.id_barang','=','barang.id_barang')
+        ->leftJoin('pembeli','pembeli.id_pembeli','=','pembeli.id_pembeli')
+        ->select('pesanan.*','barang.nama as nama_barang','pembeli.nama as nama_pembeli')
+        ->get();
+        return view('pesanan.index',compact('pesanan','judul'));
     }
 }

@@ -1,36 +1,37 @@
 @extends('layout.menu')
 @section('konten')
-<a href="{{route('pembeli.tambah')}}">tambah data</a>
+<a href="">tambah data</a>
 <br>
 <table>
     <thead>
         <tr>
             <th>no</th>
+            <th>id pesanan</th>
             <th>id pembeli</th>
-            <th>Nama</th>
-            <th>jenis kelamin</th>
-            <th>alamat</th>
-            <th>kode pos</th>
-            <th>kota</th>
-            <th>tanggal lahir</th>
+            <th>id barang</th>
+            <th>qty</th>
+            <th>tanggal pemesanan</th>
+            <th>pembeli</th>
+            <th>barang</th>
+            <th>aksi</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($pembeli as $p)
+        @foreach ($pesanan as $p)
         <tr>
             <td>{{$loop->iteration}}</td>
+            <td>{{$p->id_pesanan}}</td>
             <td>{{$p->id_pembeli}}</td>
-            <td>{{$p->nama}}</td>
-            <td>{{$p->jns_kelamin}}</td>
-            <td>{{$p->alamat}}</td>
-            <td>{{$p->kode_pos}}</td>
-            <td>{{$p->kota}}</td>
-            <td>{{$p->tgl_lahir}}</td>
+            <td>{{$p->id_barang}}</td>
+            <td>{{$p->qty}}</td>
+            <td>{{$p->tgl_pesan}}</td>
+            <td>{{ $p->nama_pembeli }}</td>
+            <td>{{ $p->nama_barang}}</td>
             <td>
-                <form onsubmit="return confirm('yakin hapus data?');" method="POST" action="{{route('pembeli.hapus', $p->id_pembeli)}}">
+                <form onsubmit="return confirm('yakin hapus data?');" method="POST" action="">
                     @csrf
                     @method('delete')
-                    <a href="{{ route('pembeli.ubah',$p->id_pembeli)}}">edit</a>
+                    <!--<a href="">edit</a>-->
                     <button type="submit">hapus</button>
                 </form>
                 @if(session('status'))

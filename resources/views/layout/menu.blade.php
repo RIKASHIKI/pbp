@@ -78,9 +78,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link {{ request::is('suplier') ? 'active' : '' }}">
+                        <a href="{{ route('suplier.index') }}" class="nav-link {{ request::is('suplier') ? 'active' : '' }}">
                             <i class="icon ion-ios-truck-outline"></i>
-                            <span>Suplier (belum)</span>
+                            <span>Suplier</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -90,7 +90,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link {{ request::is('pesanan') ? 'active' : '' }}">
+                        <a href="" class="nav-link {{ request::is('pembelian') ? 'active' : '' }}">
+                            <i class="icon ion-ios-home-outline"></i>
+                            <span>Pembelian</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('pesanan.index') }}" class="nav-link {{ request::is('pesanan') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
                             <span>pesanan (belum)</span>
                         </a>
@@ -156,9 +162,7 @@
 
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#exa').DataTable();
-        });
+        new DataTable('#exa');
     </script>
 </body>
 

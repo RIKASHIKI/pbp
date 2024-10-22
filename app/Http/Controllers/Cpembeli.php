@@ -37,6 +37,8 @@ class Cpembeli extends Controller
         return view('pembeli.ubah', compact('pembeli', 'judul'));
     }
     public function hapus($id){
-        //
+        $pembeli = Mpembeli::findOrFail($id);
+        $pembeli->delete();
+        return redirect()->route('barang.index')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'succes']);
     }
 }

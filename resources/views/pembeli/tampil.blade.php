@@ -1,53 +1,59 @@
 @extends('layout.menu')
+
 @section('konten')
-<a href="{{route('pembeli.tambah')}}" class="btn btn-primary btn-sm mb-1">tambah data</a>
-<br>
-<table class="table-bordered table-hover table-striped table">
-    <thead>
-        <tr>
-            <th>no</th>
-            <th>id pembeli</th>
-            <th>Nama</th>
-            <th>jenis kelamin</th>
-            <th>alamat</th>
-            <th>kode pos</th>
-            <th>kota</th>
-            <th>tanggal lahir</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($pembeli as $p)
-        <tr>
-            <td>{{$loop->iteration}}</td>
-            <td>{{$p->id_pembeli}}</td>
-            <td>{{$p->nama}}</td>
-            <td>{{$p->jns_kelamin}}</td>
-            <td>{{$p->alamat}}</td>
-            <td>{{$p->kode_pos}}</td>
-            <td>{{$p->kota}}</td>
-            <td>{{$p->tgl_lahir}}</td>
-            <td>
-                <form onsubmit="return confirm('yakin hapus data?');" method="POST" action="{{route('pembeli.hapus', $p->id_pembeli)}}">
-                    @csrf
-                    @method('delete')
-                    <a href="{{ route('pembeli.ubah',$p->id_pembeli)}}">edit</a>
-                    <button type="submit">hapus</button>
-                </form>
-                @if(session('status'))
-                    <script>
-                        Swal.fire({
-                            position: "top-end",
-		                    icon: "{{session('status')['icon']}}",
-		                    text: "{{session('status')['pesan']}}",
-		                    showConfirmButton: false,
-		                    timer: 2000
-                        });
-                    </script>
-                @endif
-            </td>
-        </tr>
-            
-        @endforeach
-    </tbody>
-</table>
+<div class="container mt-4">
+
+    <a href="{{route('pembeli.tambah')}}" class="btn btn-primary btn-sm mb-1">Tambah Data</a>
+
+    <table id="exa" class="table table-bordered table-hover table-striped">
+        @csrf
+        <thead>
+            <tr>
+                <th style="text-align: center; width:30px;">No</th>
+                <th style="text-align: center;">ID Pembeli</th>
+                <th style="text-align: center;">Nama</th>
+                <th style="text-align: center;">Jenis Kelamin</th>
+                <th style="text-align: center;">Alamat</th>
+                <th style="text-align: center;">Kode Pos</th>
+                <th style="text-align: center;">Kota</th>
+                <th style="text-align: center;">Tanggal Lahir</th>
+                <th style="text-align: center; width: 70px;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($pembeli as $p)
+                <tr>
+                    <td style="text-align: center;">{{ $loop->iteration }}</td>
+                    <td style="text-align: center;">{{ $p->id_pembeli }}</td>
+                    <td>{{ $p->nama }}</td>
+                    <td style="text-align: center;">{{ $p->jns_kelamin }}</td>
+                    <td>{{ $p->alamat }}</td>
+                    <td style="text-align: center;">{{ $p->kode_pos }}</td>
+                    <td>{{ $p->kota }}</td>
+                    <td style="text-align: center;">{{ dateid1($p->tgl_lahir) }}</td>
+                    <td style="text-align: center;">
+                        <form onsubmit="return confirm('Yakin ingin menghapus data ini?');" method="POST" action="{{route('pembeli.hapus', $p->id_pembeli)}}">
+                            @csrf
+                            @method('delete')
+                            <a href="{{ route('pembeli.ubah', $p->id_pembeli) }}" title="Edit Pembeli" class="btn btn-success btn-sm mt-3"><i class="fa fa-edit"></i></a>
+                            <button type="submit" title="Hapus Pembeli" class="btn btn-danger btn-sm mt-3"><i class="fa fa-trash"></i></button>
+                        </form>
+
+                        @if(session('status'))
+                            <script>
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "{{session('status')['icon']}}",
+                                    text: "{{session('status')['pesan']}}",
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                            </script>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 @endsection

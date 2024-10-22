@@ -33,12 +33,14 @@ class Csuplier extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:20',
-            'alamat' => 'required|string',
+            'id_suplier' => 'required|string|max:20',
+            'nama' => 'required|string|max:100',
+            'alamat' => 'required|string|max:200',
             'kode_pos' => 'required|string|max:10',
-            'kota' => 'required|string|max:11',
+            'kota' => 'required|string|max:50',
         ]);
         Msuplier::create([
+            'id_suplier' => $request->id_suplier,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'kode_pos' => $request->kode_pos,
@@ -71,13 +73,15 @@ class Csuplier extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'nama' => 'required|string|max:20',
-            'alamat' => 'required|string',
+            'id_suplier' => 'required|string|max:20',
+            'nama' => 'required|string|max:100',
+            'alamat' => 'required|string|max:200',
             'kode_pos' => 'required|string|max:10',
-            'kota' => 'required|string|max:11',
+            'kota' => 'required|string|max:50',
         ]);
         $suplier = Msuplier::findOrFail($id);
         $suplier->update([
+            'id_suplier' => $request->id_suplier,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'kode_pos' => $request->kode_pos,

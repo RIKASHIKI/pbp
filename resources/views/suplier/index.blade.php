@@ -1,3 +1,6 @@
+@extends('layout.menu')
+@section('konten')
+
 <a href="{{route('suplier.create')}}">tambah data</a>
 <table>
     @csrf
@@ -43,3 +46,5 @@
         @endforeach
     </tbody>
 </table>
+
+@endsection
