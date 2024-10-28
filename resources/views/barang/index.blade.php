@@ -36,6 +36,7 @@
                     <script>
                         Swal.fire({
                             position: "top-end",
+                            title: "{{session('status')['judul']}}"
 		                    icon: "{{session('status')['icon']}}",
 		                    text: "{{session('status')['pesan']}}",
 		                    showConfirmButton: false,

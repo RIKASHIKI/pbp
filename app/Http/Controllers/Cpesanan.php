@@ -16,7 +16,7 @@ class Cpesanan extends Controller
         $pesanan = DB::table('pesanan')
         ->leftJoin('barang','barang.id_barang','=','barang.id_barang')
         ->leftJoin('pembeli','pembeli.id_pembeli','=','pembeli.id_pembeli')
-        ->select('pesanan.*','barang.nama as nama_barang','pembeli.nama as nama_pembeli')
+        ->select('pesanan.*','barang.nama as nama_barang','barang.nama as nama_pembeli')
         ->get();
         return view('pesanan.index',compact('pesanan','judul'));
     }

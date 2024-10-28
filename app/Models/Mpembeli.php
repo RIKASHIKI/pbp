@@ -9,5 +9,5 @@ class Mpembeli extends Model
 {
     use HasFactory;
     protected $table = 'pembeli';
-    protected $filllable = ['id_pembeli','nama','jns_kelamin','alamat','kode_pos','kota','tgl_lahir'];
+    protected $fillable = ['id_pembeli','nama','jns_kelamin','alamat','kode_pos','kota','tgl_lahir'];
 }

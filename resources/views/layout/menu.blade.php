@@ -90,7 +90,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link {{ request::is('pembelian') ? 'active' : '' }}">
+                        <a href="{{ route('pembelian.index') }}" class="nav-link {{ request::is('pembelian') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
                             <span>Pembelian</span>
                         </a>
@@ -98,7 +98,7 @@
                     <li class="nav-item">
                         <a href="{{ route('pesanan.index') }}" class="nav-link {{ request::is('pesanan') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
-                            <span>pesanan (belum)</span>
+                            <span>pesanan</span>
                         </a>
                     </li>
                     <li class="nav-item">

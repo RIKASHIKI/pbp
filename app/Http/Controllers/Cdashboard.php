@@ -15,7 +15,10 @@ class Cdashboard extends Controller
         $dash = new Mdashboard();
         $jumlah_barang = $dash->jumlah_barang();
         $jumlah_pembeli = $dash->jumlah_pembeli();
-        return view('index',compact('jumlah_pembeli','jumlah_barang'));
+        $jumlah_suplier = $dash->jumlah_suplier();
+        $jumlah_pesanan = $dash->jumlah_pesanan();
+        $jumlah_user  = $dash->jumlah_user();
+        return view('index',compact('jumlah_pembeli','jumlah_barang','jumlah_suplier','jumlah_pesanan','jumlah_suplier','jumlah_pesanan','jumlah_user'));
     }
 
     /**
