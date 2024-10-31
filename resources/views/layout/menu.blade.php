@@ -79,7 +79,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('suplier.index') }}" class="nav-link {{ request::is('suplier') ? 'active' : '' }}">
-                            <i class="icon ion-ios-truck-outline"></i>
+                            <i class="icon ion-ios-home-outline"></i>
                             <span>Suplier</span>
                         </a>
                     </li>
@@ -134,13 +134,8 @@
             <h5 class="am-title">{{ isset($judul) ? ($judul) : '' }}</h5>
         </div>
         <div class="am-pagebody">
-
         @yield('konten')
-
         </div>
-
-
-
     </div>
     <script src="{{ asset('asset/lib/jquery/jquery.js') }}"></script>
     <script src="{{ asset('asset/lib/popper.js/popper.js') }}"></script>
