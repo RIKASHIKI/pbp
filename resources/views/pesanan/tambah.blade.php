@@ -1,33 +1,79 @@
 @extends('layout.menu')
 @section('konten')
-<form method="POST" action="{{route('pembeli.simpan')}}">
-    @csrf
-    ID PEMBELI : <input type="text" name="id_pembeli" required>
-    @error('id_pembeli'){{ $message }} @enderror
-        
-    <br />
-    NAMA : <input type="text" name="nama" required>
-    @error('nama') {{ $message }} @enderror
-    <br />
-    JENIS KELAMIN : <select name="jns_kelamin" required>
-        <option value="">~ pilih ~</option>
-        <option value="pria">pria</option>
-        <option value="wanita">wanita</option>
-        @error('jns_kelamin') {{ $message }} @enderror
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">{{ $judul }}</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Form Tambah Pesanan -->
+                    <form action="{{ route('pesanan.simpan') }}" method="POST">
+                        @csrf
 
-    <br />
-    ALAMAT : <textarea name="alamat" rows="5" required></textarea>
-    @error('alamat') {{ $message }} @enderror
-    <br />
-    KODE POS : <input type="number" name="kode_pos" required>
-    @error('kode_pos') {{ $message }} @enderror
-    <br />
-    KOTA : <input type="text" name="kota" required>
-    @error('kota') {{ $message }} @enderror
-    <br />
-    TANGGAL LAHIR : <input type="date" name="tgl_lahir" required>
-    @error('tgl_lahir') {{ $message }} @enderror
-    <button type="submit">Simpan</button>
-    <button type="reset">Reset</button>
-</form>
+                        <!-- Input ID Pesanan -->
+                        <div class="form-group">
+                            <label for="id_pesanan">ID Pesanan</label>
+                            <input type="text" name="id_pesanan" id="id_pesanan" class="form-control" value="{{ $kode_pesanan_baru }}" readonly>
+                        </div>
+
+                        <!-- Input Nama Pembeli -->
+                        <div class="form-group">
+                            <label for="id_pembeli">Nama Pembeli</label>
+                            <select name="id_pembeli" id="id_pembeli" class="form-control">
+                                <option value="">-- Pilih Pembeli --</option>
+                                @foreach ($pembeli as $p)
+                                    <option value="{{ $p->id_pembeli }}">{{ $p->nama }}</option>
+                                @endforeach
+                            </select>
+                            @error('id_pembeli')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <!-- Input Nama Barang -->
+                        <div class="form-group">
+                            <label for="id_barang">Nama Barang</label>
+                            <select name="id_barang" id="id_barang" class="form-control">
+                                <option value="">-- Pilih Barang --</option>
+                                @foreach ($barang as $b)
+                                    <option value="{{ $b->id_barang }}">{{ $b->nama }}</option>
+                                @endforeach
+                            </select>
+                            @error('id_barang')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <!-- Input Quantity -->
+                        <div class="form-group">
+                            <label for="qty">Jumlah</label>
+                            <input type="number" name="qty" id="qty" class="form-control" placeholder="Masukkan jumlah pesanan">
+                            @error('qty')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <!-- Input Tanggal Pesanan -->
+                        <div class="form-group">
+                            <label for="tgl_pesan">Tanggal Pesanan</label>
+                            <input type="date" name="tgl_pesan" id="tgl_pesan" class="form-control">
+                            @error('tgl_pesan')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <!-- Tombol Submit -->
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <a href="{{ route('pesanan.index') }}" class="btn btn-secondary">Kembali</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

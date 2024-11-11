@@ -1,22 +1,22 @@
 @extends('layout.menu')
 @section('konten')
-    <a href="#">tambah data</a>
-    <a href="{{ route('pesanan.cetak') }}" target="_blank" class="btn btn-danger btn-sm">Cetak</a>
-    <a href="{{ route('pesanan.cetakex') }}" target="_blank" class="btn btn-danger btn-sm">Cetak excel</a>
+    <a href="{{ route('pesanan.tambah') }}" class="btn btn-primary btn-sm">Tambah Data</a>
+    <a href="{{ route('pesanan.cetak') }}" target="_blank" class="btn btn-success btn-sm">Cetak</a>
+    <a href="{{ route('pesanan.cetakex') }}" target="_blank" class="btn btn-success btn-sm">Cetak Excel</a>
     <br>
     <table id="exa" class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
-                <th>no</th>
-                <th>id pesanan</th>
-                <th>id pembeli</th>
-                <th>id barang</th>
-                <th>qty</th>
-                <th>tanggal pemesanan</th>
-                <th>pembeli</th>
-                <th>barang</th>
+                <th>No</th>
+                <th>ID Pesanan</th>
+                <th>ID Pembeli</th>
+                <th>ID Barang</th>
+                <th>Qty</th>
+                <th>Tanggal Pemesanan</th>
+                <th>Pembeli</th>
+                <th>Barang</th>
                 @if (Auth::user()->level == 'admin')
-                    <th>aksi</th>
+                    <th>Aksi</th>
                 @endif
             </tr>
         </thead>
@@ -33,27 +33,28 @@
                     <td>{{ $p->nama_barang }}</td>
                     @if (Auth::user()->level == 'admin')
                         <td>
-                            <form onsubmit="return confirm('yakin hapus data?');" method="POST" action="">
+                            <form onsubmit="return confirm('Yakin hapus data?');" method="POST" action="{{ route('pesanan.hapus', $p->id_pesanan) }}">
                                 @csrf
-                                @method('delete')
-                                <!--<a href="">edit</a>-->
-                                <button type="submit">hapus</button>
+                                @method('DELETE')
+                                <a href="{{ route('pesanan.edit', $p->id_pesanan) }}" title="Edit data" class="btn btn-success btn-sm mt-3"><i class="fa fa-edit"></i></a>
+                                <button type="submit" class="btn btn-danger btn-sm mt-3"><i class="fa fa-trash"></i></button>
                             </form>
-                            @if (session('status'))
-                                <script>
-                                    Swal.fire({
-                                        position: "top-end",
-                                        icon: "{{ session('status')['icon'] }}",
-                                        text: "{{ session('status')['pesan'] }}",
-                                        showConfirmButton: false,
-                                        timer: 2000
-                                    });
-                                </script>
-                            @endif
                         </td>
                     @endif
                 </tr>
             @endforeach
         </tbody>
     </table>
+    
+    @if (session('status'))
+        <script>
+            Swal.fire({
+                position: "top-end",
+                icon: "{{ session('status')['icon'] }}",
+                text: "{{ session('status')['pesan'] }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+    @endif
 @endsection

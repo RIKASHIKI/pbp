@@ -42,12 +42,20 @@ route::middleware(['auth'])->group(function () {
     route::get('/barang/cetak', [Cbarang::class, 'cetak'])->name('barang.cetak');
     Route::resource('suplier', Csuplier::class);
 
-    route::get('/pesanan', [Cpesanan::class, 'index'])->name('pesanan.index');
+    // Route manual pesanan
+    Route::get('/pesanan', [Cpesanan::class, 'index'])->name('pesanan.index');
+    Route::get('/pesanan/tambah', [Cpesanan::class, 'tambah'])->name('pesanan.tambah');
+    Route::post('/pesanan/simpan', [Cpesanan::class, 'simpan'])->name('pesanan.simpan');
+    Route::get('/pesanan/edit/{id_pesanan}', [Cpesanan::class, 'edit'])->name('pesanan.edit');
+    Route::put('/pesanan/update/{id_pesanan}', [Cpesanan::class, 'update'])->name('pesanan.update');
+    Route::delete('/pesanan/hapus/{id_pesanan}', [Cpesanan::class, 'hapus'])->name('pesanan.hapus');
     Route::get('/pesanan/cetak', [Cpesanan::class, 'cetak'])->name('pesanan.cetak');
-    Route::get('/pesanan/excel', [Cpesanan::class, 'cetakex'])->name('pesanan.cetakex');
+    Route::get('/pesanan/cetakex', [Cpesanan::class, 'cetakex'])->name('pesanan.cetakex');
     
-    route::get('/pembelian',[Cpembelian::class, 'index'])->name('pembelian.index');
     //route manual pembeli
+    route::get('/pembelian',[Cpembelian::class, 'index'])->name('pembelian.index');
+
+    //route manual pembelian
     Route::get('/pembeli', [Cpembeli::class, 'tampil'])->name('pembeli.tampil');
     Route::get('/pembeli/cetak', [Cpembeli::class, 'cetak'])->name('pembeli.cetak');
     Route::get('/pembeli/tambah', [Cpembeli::class, 'tambah'])->name('pembeli.tambah');
@@ -65,6 +73,6 @@ route::middleware(['auth'])->group(function () {
         route::put('/admin/user/{id}/update', [Cadmin::class, 'update'])->name('admin.update');
         route::delete('/admin/user/{id}/delete', [Cadmin::class, 'delete'])->name('admin.delete');
     });
-});
 //rute logout|keluar
 route::get('/logout', [Clogin::class, 'logout'])->name('logout');
+});
