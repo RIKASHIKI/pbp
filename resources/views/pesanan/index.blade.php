@@ -1,10 +1,8 @@
 @extends('layout.menu')
 @section('konten')
     <a href="#">tambah data</a>
-    <a href="{{ route('pesanan.cetak') }}" target="_blank" class="btn btn-danger btn-sm">
-        Cetak
-    </a>
-    
+    <a href="{{ route('pesanan.cetak') }}" target="_blank" class="btn btn-danger btn-sm">Cetak</a>
+    <a href="{{ route('pesanan.cetakex') }}" target="_blank" class="btn btn-danger btn-sm">Cetak excel</a>
     <br>
     <table id="exa" class="table table-bordered table-hover table-striped">
         <thead>
@@ -30,7 +28,7 @@
                     <td>{{ $p->id_pembeli }}</td>
                     <td>{{ $p->id_barang }}</td>
                     <td>{{ $p->qty }}</td>
-                    <td>{{ $p->tgl_pesan }}</td>
+                    <td>{{ dateid1($p->tgl_pesan) }}</td>
                     <td>{{ $p->nama_pembeli }}</td>
                     <td>{{ $p->nama_barang }}</td>
                     @if (Auth::user()->level == 'admin')

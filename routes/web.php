@@ -43,7 +43,9 @@ route::middleware(['auth'])->group(function () {
     Route::resource('suplier', Csuplier::class);
 
     route::get('/pesanan', [Cpesanan::class, 'index'])->name('pesanan.index');
-    Route::get('/pesanan/cetak', [Cbarang::class, 'cetak'])->name('pesanan.cetak');
+    Route::get('/pesanan/cetak', [Cpesanan::class, 'cetak'])->name('pesanan.cetak');
+    Route::get('/pesanan/excel', [Cpesanan::class, 'cetakex'])->name('pesanan.cetakex');
+    
     route::get('/pembelian',[Cpembelian::class, 'index'])->name('pembelian.index');
     //route manual pembeli
     Route::get('/pembeli', [Cpembeli::class, 'tampil'])->name('pembeli.tampil');
