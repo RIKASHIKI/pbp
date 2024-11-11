@@ -2,7 +2,7 @@
 @section('konten')
     <form method="POST" action="{{ route('pembeli.simpan') }}">
         @csrf
-        ID PEMBELI : <input type="text" name="id_pembeli" required>
+        ID PEMBELI : <input type="text" name="id_pembeli" required value="{{ $kode_pembeli }}" readonly required>
         @error('id_pembeli')
             {{ $message }}
         @enderror

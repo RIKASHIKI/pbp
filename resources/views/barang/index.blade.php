@@ -3,6 +3,8 @@
     @if (Auth::user()->level == 'admin')
         <a href="{{ route('barang.create') }}" class="btn btn-primary btn-sm mb-1">tambah data</a>
     @endif
+    <a href="{{ route('barang.cetak') }}" target="_blank" class="btn btn-danger btn-sm">Cetak</a>
+    
     <table id="exa" class="table-bordered table-hover table-striped table">
         @csrf
         <thead>
@@ -13,6 +15,7 @@
                 <th style="text-align: center;">varian</th>
                 <th style="text-align: center;">harga beli</th>
                 <th style="text-align: center;">harga jual</th>
+                <th style="text-align: center;">foto</th>
                 @if (Auth::user()->level == 'admin')
                     <th style="text-align:center; width: 70px;">aksi</th>
                 @endif
@@ -27,6 +30,15 @@
                     <td>{{ $b->varian }}</td>
                     <td>{{ $b->harga_beli }}</td>
                     <td>{{ $b->harga_jual }}</td>
+                    <td>
+                        @if($b->foto)
+                        <a href="{{ asset('storage/foto_barang/' . $b->foto) }}" target=_blank>
+                            <img src="{{ asset('storage/foto_barang/' . $b->foto) }}" style="width: 100px; height: auto;" />
+                        </a>
+                        @else
+                        No Foto
+                        @endif
+                    </td>
                     @if (Auth::user()->level == 'admin')
                         <td>
                             <form onsubmit="return confirm('yakin hapus data?');" method="post"
@@ -43,7 +55,6 @@
                                 <script>
                                     Swal.fire({
                                         position: "top-end",
-                                        title: "{{ session('status')['judul'] }}"
                                         icon: "{{ session('status')['icon'] }}",
                                         text: "{{ session('status')['pesan'] }}",
                                         showConfirmButton: false,

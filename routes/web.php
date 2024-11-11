@@ -38,13 +38,16 @@ route::middleware(['auth'])->group(function () {
     })->name('home');
     route::get('/', [Cdashboard::class, 'index'])->name('home');
 
-    Route::resource('barang', Cbarang::class);
+    Route::resource('barang', Cbarang::class)->except(['show']);
+    route::get('/barang/cetak', [Cbarang::class, 'cetak'])->name('barang.cetak');
     Route::resource('suplier', Csuplier::class);
 
     route::get('/pesanan', [Cpesanan::class, 'index'])->name('pesanan.index');
+    Route::get('/pesanan/cetak', [Cbarang::class, 'cetak'])->name('pesanan.cetak');
     route::get('/pembelian',[Cpembelian::class, 'index'])->name('pembelian.index');
     //route manual pembeli
     Route::get('/pembeli', [Cpembeli::class, 'tampil'])->name('pembeli.tampil');
+    Route::get('/pembeli/cetak', [Cpembeli::class, 'cetak'])->name('pembeli.cetak');
     Route::get('/pembeli/tambah', [Cpembeli::class, 'tambah'])->name('pembeli.tambah');
     Route::post('/pembeli/simpan', [Cpembeli::class, 'simpan'])->name('pembeli.simpan');
     Route::get('/pembeli/{id_pembeli}/ubah', [Cpembeli::class, 'ubah'])->name('pembeli.ubah');

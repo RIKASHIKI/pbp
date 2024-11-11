@@ -1,6 +1,10 @@
 @extends('layout.menu')
 @section('konten')
     <a href="#">tambah data</a>
+    <a href="{{ route('pesanan.cetak') }}" target="_blank" class="btn btn-danger btn-sm">
+        Cetak
+    </a>
+    
     <br>
     <table id="exa" class="table table-bordered table-hover table-striped">
         <thead>

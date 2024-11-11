@@ -14,7 +14,8 @@ class Cpembeli extends Controller
     }
     public function tambah(){
         $judul = 'tambah data pembeli';
-        return view('pembeli.tambah',compact('judul'));
+        $kode_pembeli = $this->kode_pembeli();
+        return view('pembeli.tambah',compact('judul','kode_pembeli'));
     }
     public function simpan(Request $request){
         $request->validate([
@@ -41,4 +42,25 @@ class Cpembeli extends Controller
         $pembeli->delete();
         return redirect()->route('barang.index')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'succes']);
     }
+    private function kode_pembeli(){
+        $tahun = date('Y');
+        $bulan = date('m');
+        $tabu = $tahun . $bulan;
+        $nomor_akhir = Mpembeli::where('id_pembeli','like','P-'. $tabu . '%')->orderBy('id_pembeli','desc')->first();
+
+        if(!$nomor_akhir){
+            $kode_baru = 'P-' . $tabu . '0001';
+        } else {
+            $lastkode = (int) substr($nomor_akhir->id_pembeli,7);
+            $nomor_baru = $lastkode + 1;
+            $kode_baru = 'P-' . $tabu . str_pad($nomor_baru,4,'0',STR_PAD_LEFT);
+        }
+        return $kode_baru;
+    }
+    public function cetak()
+{
+    $pembeli = Mpembeli::get();
+    return view('pembeli.cetak', compact('pembeli'));
+}
+
 }

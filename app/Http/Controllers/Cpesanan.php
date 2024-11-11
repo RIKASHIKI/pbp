@@ -20,4 +20,10 @@ class Cpesanan extends Controller
         ->get();
         return view('pesanan.index',compact('pesanan','judul'));
     }
+    public function cetak()
+    {
+    $barang = Mbarang::get();
+    return view('pesanan.cetak', compact('pesanan'));
+    }
+
 }

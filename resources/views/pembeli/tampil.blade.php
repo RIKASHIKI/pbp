@@ -6,6 +6,8 @@
         @if (Auth::user()->level == 'admin')
             <a href="{{ route('pembeli.tambah') }}" class="btn btn-primary btn-sm mb-1">Tambah Data</a>
         @endif
+        <a href="{{ route('pembeli.cetak') }}" target="_blank" class="btn btn-danger btn-sm">Cetak</a>
+        
         <table id="exa" class="table table-bordered table-hover table-striped">
             @csrf
             <thead>

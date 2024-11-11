@@ -23,7 +23,7 @@ class Cbarang extends Controller
     public function create()
     {
         $judul = 'tambahkan data barang';
-        return view('barang.tambah' , compact('judul'));
+        return view('barang.tambah', compact('judul'));
     }
 
     /**
@@ -37,13 +37,22 @@ class Cbarang extends Controller
             'varian' => 'required|string|max:20',
             'harga_beli' => 'required|string|max:20',
             'harga_jual' => 'required|string|max:20',
+            'foto' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
         ]);
+        $foto = $request->file('foto');
+        $filename = null;
+        if ($foto) {
+            $extension     = $foto->getClientOriginalExtension();
+            $filename     = date('YmdHis') . '.' . $extension;
+            $foto->move(public_path('storage/foto_barang'), $filename);
+        }
         Mbarang::create([
             'id_barang' => $request->id_barang,
             'nama' => $request->nama,
             'varian' => $request->varian,
             'harga_beli' => $request->harga_beli,
             'harga_jual' => $request->harga_jual,
+            'foto' => $filename,
         ]);
         return redirect()->route('barang.index')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'success']);
     }
@@ -90,5 +99,9 @@ class Cbarang extends Controller
         $barang = Mbarang::findOrFail($id);
         $barang->delete();
         return redirect()->route('barang.index')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'success']);
+    }
+    public function cetak(){
+        $barang = Mbarang::get();
+        return view('barang.cetak',compact('barang'));
     }
 }
