@@ -24,8 +24,10 @@
 
     <div class="am-header">
         <div class="am-header-left">
-            <a id="naviconLeft" href="" class="am-navicon d-none d-lg-flex"><i class="icon ion-navicon-round"></i></a>
-            <a id="naviconLeftMobile" href="" class="am-navicon d-lg-none"><i class="icon ion-navicon-round"></i></a>
+            <a id="naviconLeft" href="" class="am-navicon d-none d-lg-flex"><i
+                    class="icon ion-navicon-round"></i></a>
+            <a id="naviconLeftMobile" href="" class="am-navicon d-lg-none"><i
+                    class="icon ion-navicon-round"></i></a>
             <a href="index.html" class="am-logo">STMIK BJB</a>
         </div>
 
@@ -34,7 +36,8 @@
             <div class="dropdown dropdown-profile">
                 <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
                     <img src="img/img3.jpg" class="wd-32 rounded-circle" alt="">
-                    <span class="logged-name"><span class="hidden-xs-down">{{ Auth::user()->username }}</span> <i class="fa fa-angle-down mg-l-3"></i></span>
+                    <span class="logged-name"><span class="hidden-xs-down">{{ Auth::user()->username }}</span> <i
+                            class="fa fa-angle-down mg-l-3"></i></span>
                 </a>
                 <div class="dropdown-menu wd-200">
                     <ul class="list-unstyled user-profile-nav">
@@ -66,43 +69,49 @@
             <div id="mainMenu" class="tab-pane active">
                 <ul class="nav am-sideleft-menu">
                     <li class="nav-item">
-                        <a href="{{route('home')}}" class="nav-link {{ Request::is('beranda') ? 'active' : '' }}">
+                        <a href="{{ route('home') }}" class="nav-link {{ Request::is('beranda') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('barang.index')}}" class="nav-link {{ Request::is('barang') ? 'active' : '' }}">
+                        <a href="{{ route('barang.index') }}"
+                            class="nav-link {{ Request::is('barang') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
                             <span>Barang</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('suplier.index') }}" class="nav-link {{ request::is('suplier') ? 'active' : '' }}">
+                        <a href="{{ route('suplier.index') }}"
+                            class="nav-link {{ request::is('suplier') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
                             <span>Suplier</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('pembeli.tampil') }}" class="nav-link {{ request::is('pembeli') ? 'active' : '' }}">
+                        <a href="{{ route('pembeli.tampil') }}"
+                            class="nav-link {{ request::is('pembeli') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
                             <span>Pembeli</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('pembelian.index') }}" class="nav-link {{ request::is('pembelian') ? 'active' : '' }}">
+                        <a href="{{ route('pembelian.index') }}"
+                            class="nav-link {{ request::is('pembelian') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
                             <span>Pembelian</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('pesanan.index') }}" class="nav-link {{ request::is('pesanan') ? 'active' : '' }}">
+                        <a href="{{ route('pesanan.index') }}"
+                            class="nav-link {{ request::is('pesanan') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
                             <span>pesanan</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('admin.index') }}" class="nav-link {{ request::is('user') ? 'active' : '' }}">
+                        <a href="{{ route('admin.index') }}"
+                            class="nav-link {{ request::is('user') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
                             <span>user</span>
                         </a>
@@ -128,13 +137,13 @@
             </div><!-- #mainMenu -->
         </div><!-- tab-content -->
     </div><!-- am-sideleft -->
-
+    <div class="am-pagetitle">
+        <h5 class="am-title">{{ isset($judul) ? $judul : '' }}</h5>
+    </div>
     <div class="am-mainpanel">
-        <div class="am-pagetitle">
-            <h5 class="am-title">{{ isset($judul) ? ($judul) : '' }}</h5>
-        </div>
+
         <div class="am-pagebody">
-        @yield('konten')
+            @yield('konten')
         </div>
     </div>
     <script src="{{ asset('asset/lib/jquery/jquery.js') }}"></script>
