@@ -1,6 +1,8 @@
 @extends('layout.menu')
 @section('konten')
-    <a href="">tambah data</a>
+<a href="{{ route('pembelian.tambah') }}" class="btn btn-primary btn-sm">Tambah Data</a>
+<a href="{{ route('pembelian.cetak') }}" target="_blank" class="btn btn-success btn-sm">Cetak</a>
+<a href="{{ route('pembelian.cetakex') }}" target="_blank" class="btn btn-success btn-sm">Cetak Excel</a>
     <br>
     <table id="exa" class="table-bordered table-hover table-striped table">
         <thead>
@@ -31,11 +33,11 @@
                     <td>{{ $p->nama_barang }}</td>
                     @if (Auth::user()->level == 'admin')
                         <td>
-                            <form onsubmit="return confirm('yakin hapus data?');" method="POST" action="">
+                            <form onsubmit="return confirm('Yakin hapus data?');" method="POST" action="{{ route('pembelian.hapus', $p->id_pembelian) }}">
                                 @csrf
-                                @method('delete')
-                                <!--<a href="">edit</a>-->
-                                <button type="submit">hapus</button>
+                                @method('DELETE')
+                                <a href="{{ route('pembelian.edit', $p->id_pembelian) }}" title="Edit data" class="btn btn-success btn-sm mt-3"><i class="fa fa-edit"></i></a>
+                                <button type="submit" class="btn btn-danger btn-sm mt-3"><i class="fa fa-trash"></i></button>
                             </form>
                             @if (session('status'))
                                 <script>

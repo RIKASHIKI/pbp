@@ -32,15 +32,17 @@ route::middleware(['guest'])->group(function () {
 
 //masuk type user
 route::middleware(['auth'])->group(function () {
-
+    // route ke halaman utama
     route::get('/', function () {
         return view('index');
     })->name('home');
     route::get('/', [Cdashboard::class, 'index'])->name('home');
-
+    // route suplier
+    Route::resource('suplier', Csuplier::class);
+    // route barang
     Route::resource('barang', Cbarang::class)->except(['show']);
     route::get('/barang/cetak', [Cbarang::class, 'cetak'])->name('barang.cetak');
-    Route::resource('suplier', Csuplier::class);
+
 
     // Route manual pesanan
     Route::get('/pesanan', [Cpesanan::class, 'index'])->name('pesanan.index');
@@ -51,9 +53,17 @@ route::middleware(['auth'])->group(function () {
     Route::delete('/pesanan/hapus/{id_pesanan}', [Cpesanan::class, 'hapus'])->name('pesanan.hapus');
     Route::get('/pesanan/cetak', [Cpesanan::class, 'cetak'])->name('pesanan.cetak');
     Route::get('/pesanan/cetakex', [Cpesanan::class, 'cetakex'])->name('pesanan.cetakex');
-    
+
     //route manual pembeli
-    route::get('/pembelian',[Cpembelian::class, 'index'])->name('pembelian.index');
+    Route::get('/pembelian', [Cpembelian::class, 'index'])->name('pembelian.index');
+    Route::get('/pembelian/tambah', [Cpembelian::class, 'tambah'])->name('pembelian.tambah');
+    Route::post('/pembelian/simpan', [Cpembelian::class, 'simpan'])->name('pembelian.simpan');
+    Route::get('/pembelian/edit/{id_pembelian}', [Cpembelian::class, 'edit'])->name('pembelian.edit');
+    Route::put('/pembelian/update/{id_pembelian}', [Cpembelian::class, 'update'])->name('pembelian.update');
+    Route::delete('/pembelian/hapus/{id_pembelian}', [Cpembelian::class, 'hapus'])->name('pembelian.hapus');
+    Route::get('/pembelian/cetak', [Cpembelian::class, 'cetak'])->name('pembelian.cetak');
+    Route::get('/pembelian/cetakex', [Cpembelian::class, 'cetakex'])->name('pembelian.cetakex');
+
 
     //route manual pembelian
     Route::get('/pembeli', [Cpembeli::class, 'tampil'])->name('pembeli.tampil');
@@ -63,6 +73,7 @@ route::middleware(['auth'])->group(function () {
     Route::get('/pembeli/{id_pembeli}/ubah', [Cpembeli::class, 'ubah'])->name('pembeli.ubah');
     Route::put('/pembeli/{id_pembeli}/update', [Cpembeli::class, 'update'])->name('pembeli.update');
     Route::delete('/pembeli/{id_pembeli}/hapus', [Cpembeli::class], 'hapus')->name('pembeli.hapus');
+
     //akses tampil admin
     route::middleware(['cek_level:admin'])->group(function () {
 
@@ -73,6 +84,6 @@ route::middleware(['auth'])->group(function () {
         route::put('/admin/user/{id}/update', [Cadmin::class, 'update'])->name('admin.update');
         route::delete('/admin/user/{id}/delete', [Cadmin::class, 'delete'])->name('admin.delete');
     });
-//rute logout|keluar
-route::get('/logout', [Clogin::class, 'logout'])->name('logout');
+    //rute logout|keluar
+    route::get('/logout', [Clogin::class, 'logout'])->name('logout');
 });

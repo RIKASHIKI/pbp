@@ -13,6 +13,7 @@
             <th style="text-align: center;">username</th>
             <th style="text-align: center;">email</th>
             <th style="text-align: center;">level</th>
+            <th style="text-align: center;">password</th>
             <th style="text-align:center; width: 70px;">aksi</th>
         </tr>
     </thead>
@@ -24,6 +25,7 @@
             <td>{{$a->username}}</td>
             <td>{{$a->email}}</td>
             <td>{{$a->level}}</td>
+            <td>{{$a->password}}</td>
             <td style="text-align:center;">
 
                 <form onsubmit="return confirm('yakin hapus data?');" method="post" action="{{route('admin.delete', $a->id)}}">
