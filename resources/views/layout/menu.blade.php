@@ -69,7 +69,7 @@
             <div id="mainMenu" class="tab-pane active">
                 <ul class="nav am-sideleft-menu">
                     <li class="nav-item">
-                        <a href="{{ route('home') }}" class="nav-link {{ Request::is('beranda') ? 'active' : '' }}">
+                        <a href="{{ route('home') }}" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
                             <i class="icon ion-ios-home-outline"></i>
                             <span>Dashboard</span>
                         </a>
@@ -119,15 +119,17 @@
                     <!-- nav-item -->
                     <li class="nav-item">
                         <a href="" class="nav-link with-sub">
-                            <i class="icon ion-ios-gear-outline"></i>
-                            <span>list</span>
+                            <i class="fa fa-desktop"></i>
+                            <span>master</span>
                         </a>
                         <ul class="nav-sub">
-                            <li class="nav-item"><a href="form-elements.html" class="nav-link">list 1</a></li>
-                            <li class="nav-item"><a href="form-layouts.html" class="nav-link">list 2</a></li>
-                            <li class="nav-item"><a href="form-validation.html" class="nav-link">list 3</a></li>
-                            <li class="nav-item"><a href="form-wizards.html" class="nav-link">list 4</a></li>
-                            <li class="nav-item"><a href="form-editor-text.html" class="nav-link">list 5</a></li>
+                            <li class="nav-link {{ request::is('home') ? 'active' : '' }}"><a href="{{ route('home') }}" class="nav-link"><i class="fa fa-home"></i><span>beranda</span></a></li>
+                            <li class="nav-link {{ request::is('barang') ? 'active' : '' }}"><a href="{{ route('barang.index') }}" class="nav-link"><i class="fa fa-cube"></i>barang</a></li>
+                            <li class="nav-link {{ request::is('pembeli') ? 'active' : '' }}"><a href="{{ route('pembeli.tampil') }}" class="nav-link"><i class="icon ion-locked"></i>pembeli</a></li>
+                            <li class="nav-link {{ request::is('suplier') ? 'active' : '' }}"><a href="{{ route('suplier.index') }}" class="nav-link"><i class="fa fa-truck"></i>suplier</a></li>
+                            <li class="nav-link {{ request::is('pembelian') ? 'active' : '' }}"><a href="{{ route('pembelian.index') }}" class="nav-link"><i class="fa fa-credit-card"></i>pembelian</a></li>
+                            <li class="nav-link {{ request::is('pesanan') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}" class="nav-link"><i class="icon ion-chatboxes"></i>pesanan</a></li>
+                            <li class="nav-link {{ request::is('user') ? 'active' : '' }}"><a href="{{ route('admin.index') }}" class="nav-link"><i class="icon ion-person"></i>user</a></li>
                         </ul>
                     </li><!-- nav-item -->
 
