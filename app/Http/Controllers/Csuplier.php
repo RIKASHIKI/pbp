@@ -46,7 +46,7 @@ class Csuplier extends Controller
             'kode_pos' => $request->kode_pos,
             'kota' => $request->kota,
         ]);
-        return redirect()->route('suplier.index')->with('success','data suplier berhasil disimpan');
+        return redirect()->route('suplier.index')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'success']);
     }
 
     /**
@@ -87,7 +87,7 @@ class Csuplier extends Controller
             'kode_pos' => $request->kode_pos,
             'kota' => $request->kota,
         ]);
-        return redirect()->route('suplier.index')->with('success','data suplier berhasil di update');
+        return redirect()->route('suplier.index')->with('status', ['pesan' => 'Data berhasil diperbarui', 'icon' => 'success']);
     }
 
     /**
@@ -97,6 +97,6 @@ class Csuplier extends Controller
     {
         $suplier = Msuplier::FindOrFail($id);
         $suplier->delete();
-        return redirect()->route('suplier.index')->with('success','data suplier berhasil di hapus');
+        return redirect()->route('suplier.index')->with('status', ['pesan' => 'Data berhasil dihapus', 'icon' => 'success']);
     }
 }

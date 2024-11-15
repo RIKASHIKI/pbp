@@ -98,7 +98,7 @@ class Cbarang extends Controller
     {
         $barang = Mbarang::findOrFail($id);
         $barang->delete();
-        return redirect()->route('barang.index')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'success']);
+        return redirect()->route('barang.index')->with('status', ['pesan' => 'Data berhasil dihapus', 'icon' => 'success']);
     }
     public function cetak(){
         $barang = Mbarang::get();

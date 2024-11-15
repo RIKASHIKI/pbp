@@ -8,6 +8,8 @@ use App\Models\Mpembelian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function Laravel\Prompts\error;
+
 class Cpembelian extends Controller
 {
     // Menampilkan daftar pembelian
@@ -52,7 +54,7 @@ class Cpembelian extends Controller
             'tgl' => $request->tgl,
         ]);
 
-        return redirect()->route('pembelian.index')->with('success', "Data berhasil ditambahkan");
+        return redirect()->route('pembelian.index')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'success']);
     }
 
     // Menampilkan halaman edit pembelian
@@ -87,14 +89,14 @@ class Cpembelian extends Controller
             "tgl" => $request->tgl,
         ]);
 
-        return redirect()->route('pembelian.index')->with("success", "Data pembelian berhasil diupdate");
+        return redirect()->route('pembelian.index')->with('status', ['pesan' => 'Data berhasil diperbarui', 'icon' => 'success']);
     }
 
     // Hapus data pembelian
     public function hapus($id_pembelian){
         $pembelian = Mpembelian::where('id_pembelian', $id_pembelian)->firstOrFail();
         $pembelian->delete();
-        return redirect()->route('pembelian.index')->with('status', ['icon' => 'success', 'pesan' => 'Data pembelian berhasil dihapus!']);
+        return redirect()->route('pembelian.index')->with('status', ['pesan' => 'Data berhasil dihapus', 'icon' => 'success']);
     }
 
     // Cetak data pembelian

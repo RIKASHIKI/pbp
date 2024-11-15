@@ -1,20 +1,8 @@
 @extends('layout.menu')
-
 @section('konten')
     <div class="container">
         <h2>Edit Pembelian</h2>
-
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form action="{{ route('pembelian.update', $pembelian->id_pembelian) }}" method="POST">
+        <form action="{{ route('pembelian.update', $pembelian->id) }}" method="POST">
             @csrf
             @method('PUT')
 

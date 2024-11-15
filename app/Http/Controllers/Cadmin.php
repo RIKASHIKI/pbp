@@ -58,13 +58,13 @@ class Cadmin extends Controller
             'email' => $request->email,
             'level' => $request->level,
         ]);
-        return redirect()->route('admin.index')->with('status', ['pesan' => 'pendaftaran berhasil! silahkan login', 'icon' => 'success']);
+        return redirect()->route('admin.index')->with('status', ['pesan' => 'pendaftaran diperbarui! silahkan login', 'icon' => 'success']);
 
     }
     public function delete($id){
         $admin = User::FindOrFail($id);
         $admin->delete();
-        return redirect()->route('admin.index')->with('success','data suplier berhasil di hapus');
+        return redirect()->route('admin.index')->with('status', ['pesan' => 'pendaftaran diperbarui! silahkan login', 'icon' => 'success']);
         }
 }
 

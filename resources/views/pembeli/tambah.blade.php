@@ -1,58 +1,71 @@
 @extends('layout.menu')
 @section('konten')
-    <form method="POST" action="{{ route('pembeli.simpan') }}">
+    <form method="POST" action="{{ route('pembeli.simpan') }}" class="container mt-4">
         @csrf
-        ID PEMBELI : <input type="text" name="id_pembeli" required value="{{ $kode_pembeli }}" readonly required>
-        @error('id_pembeli')
-            {{ $message }}
-        @enderror
 
-        <br />
-        NAMA : <input type="text" name="nama" required>
-        @error('nama')
-            {{ $message }}
-        @enderror
-        <br />
-        <div>
+        <div class="form-group">
+            <label for="id_pembeli">ID PEMBELI</label>
+            <input type="text" class="form-control" name="id_pembeli" required value="{{ $kode_pembeli }}" readonly>
+            @error('id_pembeli')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="nama">NAMA</label>
+            <input type="text" class="form-control" name="nama" required>
+            @error('nama')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="form-group">
             <label for="alamat">ALAMAT</label>
-            <textarea name="alamat" rows="3" required></textarea>
+            <textarea class="form-control" name="alamat" rows="3" required></textarea>
             @error('alamat')
-                {{ $message }}
+                <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
-        <br>
-        <div>
-            <label for="jns_kelamin">JENIS KELAMIN</label><br>
-            <select name="jns_kelamin" required>
+
+        <div class="form-group">
+            <label for="jns_kelamin">JENIS KELAMIN</label>
+            <select name="jns_kelamin" class="form-control" required>
                 <option value="">~ pilih ~</option>
-                <option value="pria">pria</option>
-                <option value="wanita">wanita</option>
-                @error('jns_kelamin')
-                    <div>{{ $message }}</div>
-                @enderror
-        </div>
-        <br />
-        <div>
-            <label for="kode_pos">KODE POS</label><br>
-            <input type="number" name="kode_pos" title="kode pos" required>
-            @error('kode_pos')
-                {{ $message }}
+                <option value="pria">Pria</option>
+                <option value="wanita">Wanita</option>
+            </select>
+            @error('jns_kelamin')
+                <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
-        <br />
-        KOTA : <input type="text" name="kota" required>
-        @error('kota')
-            {{ $message }}
-        @enderror
-        <br />
-        TANGGAL LAHIR : <input type="date" name="tgl_lahir" required>
-        @error('tgl_lahir')
-            {{ $message }}
-        @enderror
-        <div>
-            <br>
-            <button type="submit">Simpan</button>
-            <button type="reset">Reset</button>
+
+        <div class="form-group">
+            <label for="kode_pos">KODE POS</label>
+            <input type="number" class="form-control" name="kode_pos" title="kode pos" required>
+            @error('kode_pos')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="kota">KOTA</label>
+            <input type="text" class="form-control" name="kota" required>
+            @error('kota')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="tgl_lahir">TANGGAL LAHIR</label>
+            <input type="date" class="form-control" name="tgl_lahir" required>
+            @error('tgl_lahir')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
         </div>
     </form>
 @endsection

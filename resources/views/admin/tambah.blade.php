@@ -1,53 +1,60 @@
-<div style="text-align: center;">
+@extends('layout.menu')
+@section('konten')
+<div class="container" style="text-align: center;">
     <h4>Tambah Akun</h4>
     <form method="POST" action="{{ route('adminregister_proses') }}">
         @csrf
-        <div>
-            <label for="username">Username</label><br>
-            <input type="text" name="username" required>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" required>
             @error('username')
-                <div>{{ $message }}</div>
+                <div class="text-danger">{{ $message }}</div>
             @enderror
-            <br>
+        </div>
 
-            <label for="name">Nama</label><br>
-            <input type="text" name="name" required>
+        <div class="form-group">
+            <label for="name">Nama</label>
+            <input type="text" name="name" class="form-control" required>
             @error('name')
-                <div>{{ $message }}</div>
+                <div class="text-danger">{{ $message }}</div>
             @enderror
-            <br>
+        </div>
 
-            <label for="email">Email</label><br>
-            <input type="email" name="email" required>
-            @error('email') 
-                <div>{{ $message }}</div> 
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" required>
+            @error('email')
+                <div class="text-danger">{{ $message }}</div>
             @enderror
-            <br>
+        </div>
 
-            <label for="password">Password</label><br>
-            <input type="password" name="password" required>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" required>
             @error('password')
-                <div>{{ $message }}</div>
+                <div class="text-danger">{{ $message }}</div>
             @enderror
-            <br>
+        </div>
 
-            <label for="password_confirmation">Konfirmasi Password</label><br>
-            <input type="password" name="password_confirmation" required>
-            <br>
+        <div class="form-group">
+            <label for="password_confirmation">Konfirmasi Password</label>
+            <input type="password" name="password_confirmation" class="form-control" required>
+        </div>
 
-            <label for="level">Level</label><br>
-            <select name="level" required>
+        <div class="form-group">
+            <label for="level">Level</label>
+            <select name="level" class="form-control" required>
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
             </select>
-            @error('level') 
-                <div>{{ $message }}</div> 
+            @error('level')
+                <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
 
         <div>
             <br>
-            <button type="submit" class="btn btn-primary btn-sm mt-100">Tambahkan</button>
+            <button type="submit" class="btn btn-primary btn-sm">Tambahkan</button>
         </div>
     </form>
 
@@ -63,3 +70,4 @@
     </script>
     @endif
 </div>
+@endsection

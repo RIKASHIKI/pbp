@@ -2,15 +2,18 @@
 
 @section('konten')
     <div class="container mt-4">
-
         @if (Auth::user()->level == 'admin')
-            <a href="{{ route('pembeli.tambah') }}" class="btn btn-primary btn-sm mb-1">Tambah Data</a>
+            <a href="{{ route('pembeli.tambah') }}" class="btn btn-primary btn-sm mb-2" title="Tambah Pembeli">
+                <i class="fa fa-plus"></i> Tambah
+            </a>
         @endif
-        <a href="{{ route('pembeli.cetak') }}" target="_blank" class="btn btn-danger btn-sm">Cetak</a>
-        
+        <a href="{{ route('pembeli.cetak') }}" target="_blank" class="btn btn-danger btn-sm mb-2" title="Print">
+            <i class="fa fa-print"></i>
+        </a>
+
         <table id="exa" class="table table-bordered table-hover table-striped">
             @csrf
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th style="text-align: center; width:30px;">No</th>
                     <th style="text-align: center;">ID Pembeli</th>
@@ -21,7 +24,7 @@
                     <th style="text-align: center;">Kota</th>
                     <th style="text-align: center;">Tanggal Lahir</th>
                     @if (Auth::user()->level == 'admin')
-                        <th style="text-align: center; width: 70px;">Aksi</th>
+                        <th style="text-align: center; width: 100px;">Aksi</th>
                     @endif
                 </tr>
             </thead>
@@ -38,20 +41,17 @@
                         <td style="text-align: center;">{{ dateid1($p->tgl_lahir) }}</td>
                         @if (Auth::user()->level == 'admin')
                             <td style="text-align: center;">
-                                <form onsubmit="return confirm('Yakin ingin menghapus data ini?');" method="POST"
-                                    action="{{ route('pembeli.hapus', $p->id_pembeli) }}">
+                                <form id="delete-form-{{ $p->id }}" method="POST" action="{{ route('suplier.destroy', $p->id) }}">
                                     @csrf
-                                    @method('delete')
-                                    <a href="{{ route('pembeli.ubah', $p->id_pembeli) }}" title="Edit Pembeli"
-                                        class="btn btn-success btn-sm mt-3"><i class="fa fa-edit"></i></a>
-                                    <button type="submit" title="Hapus Pembeli" class="btn btn-danger btn-sm mt-3"><i
-                                            class="fa fa-trash"></i></button>
+                                    @method('DELETE')
+                                    <a href="{{ route('suplier.edit', $p->id) }}" class="btn btn-success btn-sm mb-1" title="edit"><i class="fa fa-edit"></i></a>
+                                    <button type="button" onclick="confirmDelete({{ $p->id }})" class="btn btn-danger btn-sm mb-1" title="hapus data"><i class="fa fa-trash"></i></button>
                                 </form>
-
+                                
                                 @if (session('status'))
                                     <script>
                                         Swal.fire({
-                                            position: "top-end",
+                                            position: "center",
                                             icon: "{{ session('status')['icon'] }}",
                                             text: "{{ session('status')['pesan'] }}",
                                             showConfirmButton: false,
@@ -59,6 +59,25 @@
                                         });
                                     </script>
                                 @endif
+                                
+                                <script>
+                                    function confirmDelete(id) {
+                                        Swal.fire({
+                                            title: 'Yakin hapus data?',
+                                            text: "Data yang dihapus tidak dapat dikembalikan!",
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#3085d6',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'Ya, hapus!',
+                                            cancelButtonText: 'Batal'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                document.getElementById('delete-form-' + id).submit();
+                                            }
+                                        });
+                                    }
+                                </script>
                             </td>
                         @endif
                     </tr>

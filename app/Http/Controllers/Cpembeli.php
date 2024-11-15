@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mpembeli;
+use Illuminate\Support\Facades\DB;
 
 class Cpembeli extends Controller
 {
@@ -30,7 +31,7 @@ class Cpembeli extends Controller
         $pembeli->kota = $request->kota;
         $pembeli->tgl_lahir = $request->tgl_lahir;
         $pembeli->save();
-        return redirect()->route('pembeli.tampil')->with('berhasil','data berhasil disimpan');
+        return redirect()->route('pembeli.tampil')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'success']);
     }
     public function ubah(string $id){
         $judul = 'Barang';
@@ -42,20 +43,16 @@ class Cpembeli extends Controller
         $pembeli->delete();
         return redirect()->route('barang.index')->with('status', ['pesan' => 'Data berhasil disimpan', 'icon' => 'succes']);
     }
-    private function kode_pembeli(){
-        $tahun = date('Y');
-        $bulan = date('m');
-        $tabu = $tahun . $bulan;
-        $nomor_akhir = Mpembeli::where('id_pembeli','like','P-'. $tabu . '%')->orderBy('id_pembeli','desc')->first();
-
-        if(!$nomor_akhir){
-            $kode_baru = 'P-' . $tabu . '0001';
+    private function kode_pembeli()
+    {
+        $lastPesanan = DB::table('pesanan')->orderBy('id_pesanan', 'desc')->first();
+        if ($lastPesanan) {
+            $kodeTerakhir = intval(substr($lastPesanan->id_pesanan, -3));
+            $kodeBaru = 'P-' . str_pad($kodeTerakhir + 1, 4, '0', STR_PAD_LEFT);
         } else {
-            $lastkode = (int) substr($nomor_akhir->id_pembeli,7);
-            $nomor_baru = $lastkode + 1;
-            $kode_baru = 'P-' . $tabu . str_pad($nomor_baru,4,'0',STR_PAD_LEFT);
+            $kodeBaru = 'P-0001';
         }
-        return $kode_baru;
+        return $kodeBaru;
     }
     public function cetak()
 {

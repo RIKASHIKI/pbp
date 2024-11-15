@@ -113,7 +113,7 @@ class Cpesanan extends Controller
     public function cetakex()
     {
         header("Content-type: application/vnd-ms-excel");
-        header("Content-Disposition: attachment; filename=nama_file.xls");
+        header("Content-Disposition: attachment; filename=pesanan.xls");
 
         $pesanan = DB::table('pesanan')
             ->leftJoin('barang', 'barang.id_barang', '=', 'barang.id_barang')

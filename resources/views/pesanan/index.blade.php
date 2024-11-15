@@ -1,8 +1,8 @@
 @extends('layout.menu')
 @section('konten')
-    <a href="{{ route('pesanan.tambah') }}" class="btn btn-primary btn-sm">Tambah Data</a>
-    <a href="{{ route('pesanan.cetak') }}" target="_blank" class="btn btn-success btn-sm">Cetak</a>
-    <a href="{{ route('pesanan.cetakex') }}" target="_blank" class="btn btn-success btn-sm">Cetak Excel</a>
+    <a href="{{ route('pesanan.tambah') }}" class="btn btn-primary btn-sm" title="tambah data"><i class="fa fa-plus"></i> Tambah Data</a>
+    <a href="{{ route('pesanan.cetak') }}" target="_blank" class="btn btn-success btn-sm" title="cetak"><i class="fa fa-print"></i></a>
+    <a href="{{ route('pesanan.cetakex') }}" target="_blank" class="btn btn-success btn-sm" title="cetak excel"><i class="fa fa-print"></i></a>
     <br>
     <table id="exa" class="table table-bordered table-hover table-striped">
         <thead>
