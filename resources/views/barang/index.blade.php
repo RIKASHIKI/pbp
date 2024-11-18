@@ -1,5 +1,13 @@
 @extends('layout.menu')
 @section('konten')
+<form method="GET" action="{{ route('pesanan.index') }}" class="mb-3">
+    Dari :
+    <input type="date" name="dari" value="{{ request('dari') }}">
+    Sampai :
+    <input type="date" name="sampai" value="{{ request('dari') }}">
+    <button type="submit">Filter</button>
+</form>
+
     @if (Auth::user()->level == 'admin')
         <a href="{{ route('barang.create') }}" class="btn btn-primary btn-sm mb-1" title="tambah"><i class="fa fa-plus"></i> tambah</a>
     @endif

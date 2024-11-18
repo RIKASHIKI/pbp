@@ -10,14 +10,21 @@ use Illuminate\Support\Facades\DB;
 
 class Cpesanan extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $judul = 'pesanan';
-        $pesanan = DB::table('pesanan')
-            ->leftJoin('barang', 'barang.id_barang', '=', 'barang.id_barang')
-            ->leftJoin('pembeli', 'pembeli.id_pembeli', '=', 'pembeli.id_pembeli')
+        $query = DB::table('pesanan')
+            ->leftJoin('barang', 'pesanan.id_barang', '=', 'barang.id_barang')
+            ->leftJoin('pembeli', 'pesanan.id_pembeli', '=', 'pembeli.id_pembeli')
             ->select('pesanan.*', 'barang.nama as nama_barang', 'pembeli.nama as nama_pembeli')
-            ->get();
+            ->orderBy('pesanan.tgl_pesan', 'DESC');
+
+            if ($request->filled('dari') && $request->filled('sampai')) {
+                $query->whereBetween('pesanan.tgl_pesan', [$request->dari, $request->sampai]);
+            }
+        
+
+            $pesanan = $query->get();
         return view('pesanan.index', compact('pesanan', 'judul'));
     }
 
@@ -25,12 +32,10 @@ class Cpesanan extends Controller
     {
         $judul = 'tambah data pesanan';
         $pembeli = DB::table('pembeli')
-            ->select('id_pembeli', 'nama')
-            ->get();
+            ->select('id_pembeli', 'nama')->get();
 
         $barang = DB::table('barang')
-            ->select('id_barang', 'nama')
-            ->get();
+            ->select('id_barang', 'nama')->get();
 
         $kode_pesanan_baru = $this->kode_pesanan();
         return view('pesanan.tambah', compact('pembeli', 'barang', 'judul', 'kode_pesanan_baru'));
@@ -56,6 +61,23 @@ class Cpesanan extends Controller
 
         return redirect()->route('pesanan.index')->with('success', "Data berhasil ditambahkan");
     }
+    //     public function save(Request $request)
+    // {
+    //     $request->validate([
+    //         'id_pesanan'    => 'required|max:15|unique:pesanan,id_pesanan'
+    //     ]);
+
+    //     $pesanan = new Mpesanan;
+    //     $pesanan->id_pesanan    = $request->id_pesanan;
+    //     $pesanan->id_barang     = $request->nama_barang;
+    //     $pesanan->id_pembeli  = $request->nama_pembeli;
+    //     $pesanan->qty           = $request->qty;
+    //     $pesanan->tgl_pesan     = $request->tgl_pesan;
+    //     $pesanan->save();
+
+    //     return redirect()->route('pesanan.index')->with('Sukses', 'Data tersimpan');
+    // }
+
 
     public function edit(string $id_pesanan)
     {
@@ -97,7 +119,7 @@ class Cpesanan extends Controller
     {
         $pesanan = Mpesanan::where('id_pesanan', $id_pesanan)->firstOrFail();
         $pesanan->delete();
-        return redirect()->route('pesanan.index')->with('status', ['icon' => 'success','pesan' => 'Data pesanan berhasil dihapus!']);
+        return redirect()->route('pesanan.index')->with('status', ['icon' => 'success', 'pesan' => 'Data pesanan berhasil dihapus!']);
     }
 
     public function cetak()
