@@ -16,8 +16,8 @@ class Cpembelian extends Controller
     public function index(){
         $judul = 'pembelian';
         $pembelian = DB::table('pembelian')
-            ->leftJoin('barang', 'barang.id_barang', '=', 'barang.id_barang')
-            ->leftJoin('suplier', 'suplier.id_suplier', '=', 'suplier.id_suplier')
+            ->leftJoin('barang', 'pembelian.id_barang', '=', 'barang.id_barang')
+            ->leftJoin('suplier', 'pembelian.id_suplier', '=', 'suplier.id_suplier')
             ->select('pembelian.*', 'barang.nama as nama_barang', 'suplier.nama as nama_suplier')
             ->get();
         return view('pembelian.index', compact('pembelian', 'judul'));
