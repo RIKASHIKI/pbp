@@ -3,7 +3,14 @@
 <a href="{{ route('pembelian.tambah') }}" class="btn btn-primary btn-sm" title="tambah"><i class="fa fa-plus"></i> tambah</a>
 <a href="{{ route('pembelian.cetak') }}" target="_blank" class="btn btn-success btn-sm" title="cetak"><i class="fa fa-print"></i></a>
 <a href="{{ route('pembelian.cetakex') }}" target="_blank" class="btn btn-success btn-sm" title="cetak excel"><i class="fa fa-print"></i></a>
-    <br>
+    <br><br>
+    <form id="filterForm" method="GET" action="{{ route('pembelian.index') }}">
+        Dari :
+        <input type="date" name="dari" id="dari" value="{{ request('dari') }}">
+        Sampai :
+        <input type="date" name="sampai" id="sampai" value="{{ request('sampai') }}">
+    </form>
+    
     <table id="exa" class="table-bordered table-hover table-striped table">
         <thead>
             <tr>
@@ -28,7 +35,7 @@
                     <td>{{ $p->id_barang }}</td>
                     <td>{{ $p->id_suplier }}</td>
                     <td>{{ $p->qty }}</td>
-                    <td>{{ $p->tgl }}</td>
+                    <td>{{ dateid1($p->tgl) }}</td>
                     <td>{{ $p->nama_suplier }}</td>
                     <td>{{ $p->nama_barang }}</td>
                     @if (Auth::user()->level == 'admin')
@@ -76,4 +83,15 @@
             @endforeach
         </tbody>
     </table>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterInputs = document.querySelectorAll('#filterForm input, #filterForm select');
+            filterInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    document.getElementById('filterForm').submit();
+                });
+            });
+        });
+    </script>
+    
 @endsection

@@ -2,17 +2,49 @@
 @section('konten')
     <a href="{{ route('pesanan.tambah') }}" class="btn btn-primary btn-sm" title="tambah data"><i class="fa fa-plus"></i> Tambah
         Data</a>
-    <a href="{{ route('pesanan.cetak') }}" target="_blank" class="btn btn-success btn-sm" title="cetak"><i
-            class="fa fa-print"></i></a>
+    <a href="{{ route('pesanan.cetak') }}" target="_blank" class="btn btn-success btn-sm" data-toggle="modal"
+        data-target="#filterModal" title="cetak"><i class="fa fa-print"></i></a>
     <a href="{{ route('pesanan.cetakex') }}" target="_blank" class="btn btn-success btn-sm" title="cetak excel"><i
             class="fa fa-print"></i></a>
     <br><br>
-    <form method="GET" action="{{ route('pesanan.index') }}" class="mb-3">
-        Dari :
-        <input type="date" name="dari" value="{{ request('dari') }}">
-        Sampai :
-        <input type="date" name="sampai" value="{{ request('dari') }}">
-        <button type="submit">Filter</button>
+    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="filterModalLabel">Pilih Tanggal untuk Cetak</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="GET" action="{{ route('pesanan.cetak') }}" target=_blank>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="dari">Dari:</label>
+                            <input type="date" class="form-control" id="dari" name="dari" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sampai">Sampai:</label>
+                            <input type="date" class="form-control" id="sampai" name="sampai" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-success">Cetak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <form method="GET" action="{{ route('pesanan.index') }}" class="mb-3">
+            Dari :
+            <input type="date" name="dari" value="{{ request('dari') }}">
+            Sampai :
+            <input type="date" name="sampai" value="{{ request('dari') }}">
+            <button type="submit">Filter</button>
+    </div>
     </form>
     <table id="exa" class="table table-bordered table-hover table-striped">
 

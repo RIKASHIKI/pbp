@@ -13,13 +13,17 @@ use function Laravel\Prompts\error;
 class Cpembelian extends Controller
 {
     // Menampilkan daftar pembelian
-    public function index(){
+    public function index(Request $request){
         $judul = 'pembelian';
-        $pembelian = DB::table('pembelian')
+        $query = DB::table('pembelian')
             ->leftJoin('barang', 'pembelian.id_barang', '=', 'barang.id_barang')
             ->leftJoin('suplier', 'pembelian.id_suplier', '=', 'suplier.id_suplier')
             ->select('pembelian.*', 'barang.nama as nama_barang', 'suplier.nama as nama_suplier')
-            ->get();
+            ->orderBy('pembelian.tgl','DESC');
+            if ($request->filled('dari') && $request->filled('sampai')) {
+                $query->whereBetween('pembelian.tgl', [$request->dari, $request->sampai]);
+            }
+            $pembelian = $query->get();
         return view('pembelian.index', compact('pembelian', 'judul'));
     }
 

@@ -122,13 +122,20 @@ class Cpesanan extends Controller
         return redirect()->route('pesanan.index')->with('status', ['icon' => 'success', 'pesan' => 'Data pesanan berhasil dihapus!']);
     }
 
-    public function cetak()
+    public function cetak(Request $request)
     {
-        $pesanan = DB::table('pesanan')
-            ->leftJoin('barang', 'barang.id_barang', '=', 'barang.id_barang')
-            ->leftJoin('pembeli', 'pembeli.id_pembeli', '=', 'pembeli.id_pembeli')
+        $query = DB::table('pesanan')
+            ->leftJoin('barang', 'pesanan.id_barang', '=', 'barang.id_barang')
+            ->leftJoin('pembeli', 'pesanan.id_pembeli', '=', 'pembeli.id_pembeli')
             ->select('pesanan.*', 'barang.nama as nama_barang', 'pembeli.nama as nama_pembeli')
-            ->get();
+            ->orderBy('pesanan.tgl_pesan', 'DESC');
+
+            if ($request->filled('dari') && $request->filled('sampai')) {
+                $query->whereBetween('pesanan.tgl_pesan', [$request->dari, $request->sampai]);
+            }
+        
+
+            $pesanan = $query->get();
         return view('pesanan.cetak', compact('pesanan'));
     }
 
