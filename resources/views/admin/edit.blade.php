@@ -7,8 +7,16 @@
             @method('PUT')
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" class="form-control" value="{{ old('name', $admin->name) }}" readonly required>
+                <input type="text" name="name" class="form-control" value="{{ old('name', $admin->name) }}" required>
                 @error('name')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="username">username</label>
+                <input type="text" name="username" class="form-control" value="{{ old('username', $admin->username) }}" required>
+                @error('username')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -31,6 +39,15 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="form-group">
+                <label for="password">Password(biarkan kosong jika tidak digunakan)</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password_confirmation">Konfirmasi Password</label>
+                <input type="password" name="password_confirmation" class="form-control">
+            </div>
+            
 
             <button type="submit" class="btn btn-primary">Update User</button>
             <a href="{{ route('admin.index')}}" class="btn btn-secondary">Back</a>

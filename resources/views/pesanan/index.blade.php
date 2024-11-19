@@ -52,8 +52,6 @@
             <tr>
                 <th>No</th>
                 <th>ID Pesanan</th>
-                <th>ID Pembeli</th>
-                <th>ID Barang</th>
                 <th>Qty</th>
                 <th>Tanggal Pemesanan</th>
                 <th>Pembeli</th>
@@ -68,8 +66,6 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $p->id_pesanan }}</td>
-                    <td>{{ $p->id_pembeli }}</td>
-                    <td>{{ $p->id_barang }}</td>
                     <td>{{ $p->qty }}</td>
                     <td>{{ dateid1($p->tgl_pesan) }}</td>
                     <td>{{ $p->nama_pembeli }}</td>
