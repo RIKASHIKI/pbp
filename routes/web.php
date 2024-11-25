@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Capi;
 use App\Http\Controllers\Cuser;
 use App\Http\Controllers\Cadmin;
 use App\Http\Controllers\Clogin;
@@ -74,6 +75,10 @@ route::middleware(['auth'])->group(function () {
     Route::put('/pembeli/{id_pembeli}/update', [Cpembeli::class, 'update'])->name('pembeli.update');
     Route::delete('/pembeli/{id_pembeli}/hapus', [Cpembeli::class], 'hapus')->name('pembeli.hapus');
 
+
+
+    //API
+    route::get('/api',[Capi::class, 'index'])->name('api.index');
     //akses tampil admin
     route::middleware(['cek_level:admin'])->group(function () {
 
